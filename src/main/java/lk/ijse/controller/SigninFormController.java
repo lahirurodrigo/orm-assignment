@@ -8,15 +8,19 @@ import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.custom.SigninBO;
 import lk.ijse.bo.custom.impl.SigninBOImpl;
 import lk.ijse.dto.AdminDTO;
 import lk.ijse.dto.MemberDTO;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -33,6 +37,13 @@ public class SigninFormController implements Initializable {
     @FXML
     private JFXComboBox<String> cmbType;
 
+
+    @FXML
+    private AnchorPane rootNode;
+
+    @FXML
+    private AnchorPane rootVary;
+
     @FXML
     private JFXTextField txtEmail;
 
@@ -45,8 +56,10 @@ public class SigninFormController implements Initializable {
     SigninBO signinBO = new SigninBOImpl();
 
     @FXML
-    void btnLoginPageOnAction(MouseEvent event) {
-
+    void btnLoginPageOnAction(MouseEvent event) throws IOException {
+        Parent rootNew = FXMLLoader.load(this.getClass().getResource("/view/login_form.fxml"));
+        this.rootVary.getChildren().clear();
+        this.rootVary.getChildren().add(rootNew);
     }
 
     @Override
