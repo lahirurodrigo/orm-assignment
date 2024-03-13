@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashboardFormController">
+   <children>
+      <Label layoutX="210.0" layoutY="20.0" text="Dashboard">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="104.0" layoutY="132.0" style="-fx-background-color: white;" text="Branches">
+         <graphic>
+            <ImageView fx:id="btnBranches" fitHeight="50.0" fitWidth="50.0" onDragDetected="#btnBranchesOnAction">
+               <image>
+                  <Image url="@../icons/videos.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnMembers" buttonType="RAISED" layoutX="104.0" layoutY="240.0" onAction="#btnMembersOnAction" prefHeight="58.0" prefWidth="133.0" style="-fx-background-color: white;" text="Members">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0">
+               <image>
+                  <Image url="@../icons/people.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnBooks" buttonType="RAISED" layoutX="390.0" layoutY="132.0" onAction="#btnBooksOnAction" prefHeight="58.0" prefWidth="133.0" style="-fx-background-color: white;" text="Books">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0">
+               <image>
+                  <Image url="@../icons/book.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnSettings" buttonType="RAISED" layoutX="390.0" layoutY="234.0" onAction="#btnSettingsOnAction" prefHeight="58.0" prefWidth="133.0" style="-fx-background-color: white;" text="Settings">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0">
+               <image>
+                  <Image url="@../icons/settings.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnLogout" layoutX="407.0" layoutY="403.0" onAction="#btnLogoutOnAction" prefHeight="44.0" prefWidth="116.0" text="Logout">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@../icons/check-out.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>
