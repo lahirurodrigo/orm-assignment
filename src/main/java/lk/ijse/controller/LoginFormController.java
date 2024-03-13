@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -46,12 +47,23 @@ public class LoginFormController {
     LoginBO loginBO = new LoginBOImpl();
 
     @FXML
-    void btnLoginOnAction(ActionEvent event) {
+    void btnLoginOnAction(ActionEvent event) throws IOException {
 
         String username = txtUsername.getText();
         String password = txtPassword.getText();
 
         AdminDTO adminDTO = loginBO.checkCredentials(username);
+
+        /*  Uncomment this after connecting the database */
+
+        /*if (!(adminDTO.getPassword().equals(password))){
+            new Alert(Alert.AlertType.ERROR,"password incorrect").showAndWait();
+            return;
+        }*/
+
+        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
+        this.rootVary.getChildren().clear();
+        this.rootVary.getChildren().add(rootNew);
     }
 
     @FXML
@@ -63,22 +75,22 @@ public class LoginFormController {
 
     @FXML
     void cmbTypeOnAction(ActionEvent event) {
-
+        btnLogin.requestFocus();
     }
 
     @FXML
     void txtEmailOnAction(ActionEvent event) {
-
+        cmbType.requestFocus();
     }
 
     @FXML
     void txtPasswordOnAction(ActionEvent event) {
-
+        txtEmail.requestFocus();
     }
 
     @FXML
     void txtUsernameOnAction(ActionEvent event) {
-
+        txtPassword.requestFocus();
     }
 
 }

@@ -29,10 +29,10 @@ import java.util.regex.Pattern;
 public class SigninFormController implements Initializable {
 
     @FXML
-    private Label btnLoginPage;
+    private JFXButton btnSignin;
 
     @FXML
-    private JFXButton btnSignin;
+    private JFXButton btnLoginPage;
 
     @FXML
     private JFXComboBox<String> cmbType;
@@ -56,10 +56,12 @@ public class SigninFormController implements Initializable {
     SigninBO signinBO = new SigninBOImpl();
 
     @FXML
-    void btnLoginPageOnAction(MouseEvent event) throws IOException {
+    void btnLoginPageOnAction(ActionEvent event) throws IOException {
+
+        System.out.println("hi");
         Parent rootNew = FXMLLoader.load(this.getClass().getResource("/view/login_form.fxml"));
-        this.rootVary.getChildren().clear();
-        this.rootVary.getChildren().add(rootNew);
+        this.rootNode.getChildren().clear();
+        this.rootNode.getChildren().add(rootNew);
     }
 
     @Override
