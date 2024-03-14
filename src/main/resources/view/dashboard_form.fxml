@@ -14,16 +14,16 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="104.0" layoutY="132.0" style="-fx-background-color: white;" text="Branches">
+      <JFXButton fx:id="btnBranches" buttonType="RAISED" layoutX="104.0" layoutY="132.0" onAction="#btnBranchesOnAction" prefHeight="58.0" prefWidth="137.0" style="-fx-background-color: white;" text="Branches">
          <graphic>
-            <ImageView fx:id="btnBranches" fitHeight="50.0" fitWidth="50.0" onDragDetected="#btnBranchesOnAction">
+            <ImageView fitHeight="50.0" fitWidth="50.0">
                <image>
                   <Image url="@../icons/videos.png" />
                </image>
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnMembers" buttonType="RAISED" layoutX="104.0" layoutY="240.0" onAction="#btnMembersOnAction" prefHeight="58.0" prefWidth="133.0" style="-fx-background-color: white;" text="Members">
+      <JFXButton fx:id="btnMembers" buttonType="RAISED" layoutX="104.0" layoutY="231.0" onAction="#btnMembersOnAction" prefHeight="58.0" prefWidth="137.0" style="-fx-background-color: white;" text="Members">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0">
                <image>
@@ -32,7 +32,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnBooks" buttonType="RAISED" layoutX="390.0" layoutY="132.0" onAction="#btnBooksOnAction" prefHeight="58.0" prefWidth="133.0" style="-fx-background-color: white;" text="Books">
+      <JFXButton fx:id="btnBooks" buttonType="RAISED" layoutX="390.0" layoutY="132.0" onAction="#btnBooksOnAction" prefHeight="58.0" prefWidth="137.0" style="-fx-background-color: white;" text="Books">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0">
                <image>
@@ -40,7 +40,7 @@
                </image>
             </ImageView>
          </graphic></JFXButton>
-      <JFXButton fx:id="btnSettings" buttonType="RAISED" layoutX="390.0" layoutY="234.0" onAction="#btnSettingsOnAction" prefHeight="58.0" prefWidth="133.0" style="-fx-background-color: white;" text="Settings">
+      <JFXButton fx:id="btnSettings" buttonType="RAISED" layoutX="390.0" layoutY="231.0" onAction="#btnSettingsOnAction" prefHeight="58.0" prefWidth="137.0" style="-fx-background-color: white;" text="Settings">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0">
                <image>
@@ -49,11 +49,29 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnLogout" layoutX="407.0" layoutY="403.0" onAction="#btnLogoutOnAction" prefHeight="44.0" prefWidth="116.0" text="Logout">
+      <JFXButton fx:id="btnLogout" layoutX="487.0" layoutY="416.0" onAction="#btnLogoutOnAction" prefHeight="44.0" prefWidth="116.0" text="Logout">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>
                   <Image url="@../icons/check-out.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnBorrowals" buttonType="RAISED" layoutX="104.0" layoutY="328.0" onAction="#btnBorrowalsOnAction" prefHeight="58.0" prefWidth="137.0" style="-fx-background-color: white;" text="Borrowals">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0">
+               <image>
+                  <Image url="@../../../../../../Desktop/book.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnReturn" buttonType="RAISED" layoutX="390.0" layoutY="328.0" onAction="#btnReturnOnAction" prefHeight="58.0" prefWidth="137.0" style="-fx-background-color: white;" text="Returns">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0">
+               <image>
+                  <Image url="@../../../../../../Desktop/return.png" />
                </image>
             </ImageView>
          </graphic>

@@ -89,17 +89,10 @@ public class SigninFormController implements Initializable {
             return;
         }
 
-        if (type.equals("Admin")){
             AdminDTO adminDTO = new AdminDTO(username, password, email);
 
             boolean saved = signinBO.saveAdmin(adminDTO);
 
-        }else{
-            MemberDTO memberDTO = new MemberDTO(username, password, email);
-
-            boolean saved = signinBO.saveMember(memberDTO);
-
-        }
 
     }
 

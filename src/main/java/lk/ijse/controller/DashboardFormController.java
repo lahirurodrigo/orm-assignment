@@ -3,8 +3,6 @@ package lk.ijse.controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class DashboardFormController {
@@ -13,13 +11,19 @@ public class DashboardFormController {
     private JFXButton btnBooks;
 
     @FXML
-    private ImageView btnBranches;
+    private JFXButton btnBorrowals;
+
+    @FXML
+    private JFXButton btnBranches;
 
     @FXML
     private JFXButton btnLogout;
 
     @FXML
     private JFXButton btnMembers;
+
+    @FXML
+    private JFXButton btnReturn;
 
     @FXML
     private JFXButton btnSettings;
@@ -33,7 +37,12 @@ public class DashboardFormController {
     }
 
     @FXML
-    void btnBranchesOnAction(MouseEvent event) {
+    void btnBorrowalsOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnBranchesOnAction(ActionEvent event) {
 
     }
 
@@ -44,6 +53,11 @@ public class DashboardFormController {
 
     @FXML
     void btnMembersOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnReturnOnAction(ActionEvent event) {
 
     }
 

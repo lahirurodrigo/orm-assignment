@@ -8,15 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BooksFormController">
+<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BooksFormController">
    <children>
       <Label layoutX="239.0" layoutY="25.0" text="Books">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnAdd" buttonType="RAISED" contentDisplay="RIGHT" layoutX="191.0" layoutY="331.0" onAction="#btnAddOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #C4F9FF; -fx-background-radius: 10;" text="Add">
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" contentDisplay="RIGHT" layoutX="237.0" layoutY="389.0" onAction="#btnAddOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #C4F9FF; -fx-background-radius: 10;" text="Add">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
@@ -24,7 +23,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" contentDisplay="RIGHT" layoutX="280.0" layoutY="331.0" onAction="#btnUpdateOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #C4F9FF; -fx-background-radius: 10;" text="Update">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" contentDisplay="RIGHT" layoutX="326.0" layoutY="389.0" onAction="#btnUpdateOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #C4F9FF; -fx-background-radius: 10;" text="Update">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
@@ -32,7 +31,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btndelete" buttonType="RAISED" contentDisplay="RIGHT" layoutX="468.0" layoutY="331.0" onAction="#btnDeleteOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #f08080; -fx-background-radius: 10;" text="Delete" textFill="#000000b0">
+      <JFXButton fx:id="btndelete" buttonType="RAISED" contentDisplay="RIGHT" layoutX="514.0" layoutY="389.0" onAction="#btnDeleteOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #f08080; -fx-background-radius: 10;" text="Delete" textFill="#000000b0">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
@@ -40,7 +39,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnView" buttonType="RAISED" contentDisplay="RIGHT" layoutX="374.0" layoutY="331.0" onAction="#btnViewOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #F9F871; -fx-background-radius: 10;" text="View">
+      <JFXButton fx:id="btnView" buttonType="RAISED" contentDisplay="RIGHT" layoutX="420.0" layoutY="389.0" onAction="#btnViewOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #F9F871; -fx-background-radius: 10;" text="View">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
@@ -62,5 +61,13 @@
       <JFXComboBox fx:id="cmbBranch" layoutX="203.0" layoutY="290.0" onAction="#cmbBranchOnAction" prefHeight="24.0" prefWidth="171.0" />
       <JFXTextField fx:id="txtQuantity" layoutX="466.0" layoutY="216.0" onAction="#txtQuantityOnAction" prefHeight="24.0" prefWidth="107.0" />
       <Label layoutX="466.0" layoutY="200.0" text="Quantity" />
+      <JFXButton fx:id="btnBookList" buttonType="RAISED" contentDisplay="RIGHT" layoutX="34.0" layoutY="389.0" onAction="#btnBookListOnAction" prefHeight="35.0" prefWidth="131.0" style="-fx-background-color: #BFFB8B; -fx-background-radius: 10;" text="Book List">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

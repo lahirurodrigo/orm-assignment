@@ -21,6 +21,9 @@ public class BooksFormController {
     private JFXButton btndelete;
 
     @FXML
+    private JFXButton btnBookList;
+
+    @FXML
     private JFXComboBox<String> cmbBranch;
 
     @FXML
@@ -105,6 +108,11 @@ public class BooksFormController {
     @FXML
     void txtTitleOnAction(ActionEvent event) {
         txtAuthor.requestFocus();
+    }
+
+    @FXML
+    void btnBookListOnAction(ActionEvent event) {
+
     }
 
 }
