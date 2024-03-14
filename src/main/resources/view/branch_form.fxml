@@ -8,17 +8,17 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BranchFormOnAction">
+<AnchorPane prefHeight="480.0" prefWidth="640.0" style="-fx-background-image: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BranchFormOnAction">
    <children>
       <Label layoutX="206.0" layoutY="27.0" text="Branches">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="196.0" layoutY="131.0" text="Branch ID" />
+      <Label layoutX="200.0" layoutY="131.0" text="Branch ID" />
       <Label layoutX="175.0" layoutY="192.0" text="Branch Name" />
-      <JFXTextField fx:id="txtID" layoutX="286.0" layoutY="127.0" onAction="#txtIDOnAction" prefHeight="24.0" prefWidth="188.0" />
-      <JFXTextField fx:id="txtName" layoutX="286.0" layoutY="188.0" onAction="#txtNameOnAction" prefHeight="24.0" prefWidth="188.0" />
+      <JFXTextField fx:id="txtID" layoutX="286.0" layoutY="127.0" onAction="#txtIDOnAction" prefHeight="24.0" prefWidth="224.0" />
+      <JFXTextField fx:id="txtName" layoutX="286.0" layoutY="188.0" onAction="#txtNameOnAction" prefHeight="24.0" prefWidth="224.0" />
       <JFXButton fx:id="btnAdd" buttonType="RAISED" contentDisplay="RIGHT" layoutX="104.0" layoutY="328.0" onAction="#btnAddOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #C4F9FF; -fx-background-radius: 10;" text="Add">
          <font>
             <Font name="System Bold" size="10.0" />
