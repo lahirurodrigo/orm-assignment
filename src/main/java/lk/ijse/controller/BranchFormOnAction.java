@@ -27,7 +27,8 @@ public class BranchFormOnAction {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-
+        String id = txtID.getText();
+        String name = txtName.getText();
     }
 
     @FXML
