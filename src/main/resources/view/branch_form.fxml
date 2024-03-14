@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="480.0" prefWidth="640.0" style="-fx-background-image: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BranchFormOnAction">
+<AnchorPane prefHeight="480.0" prefWidth="640.0" style="-fx-background-image: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BranchFormController">
    <children>
       <Label layoutX="206.0" layoutY="27.0" text="Branches">
          <font>

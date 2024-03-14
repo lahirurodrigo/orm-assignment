@@ -11,7 +11,7 @@ import lk.ijse.dto.BranchDTO;
 
 import java.util.regex.Pattern;
 
-public class BranchFormOnAction {
+public class BranchFormController {
 
     @FXML
     private JFXButton btnAdd;
