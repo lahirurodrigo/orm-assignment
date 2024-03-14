@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BorrowalFormController">
+   <children>
+      <Label layoutX="218.0" layoutY="23.0" text="Borrowals">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" contentDisplay="RIGHT" layoutX="257.0" layoutY="409.0" onAction="#btnAddOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #C4F9FF; -fx-background-radius: 10;" text="Add">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" contentDisplay="RIGHT" layoutX="346.0" layoutY="409.0" onAction="#btnUpdateOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #C4F9FF; -fx-background-radius: 10;" text="Update">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btndelete" buttonType="RAISED" contentDisplay="RIGHT" layoutX="534.0" layoutY="409.0" onAction="#btnDeleteOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #f08080; -fx-background-radius: 10;" text="Delete" textFill="#000000b0">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnView" buttonType="RAISED" contentDisplay="RIGHT" layoutX="440.0" layoutY="409.0" onAction="#btnViewOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #F9F871; -fx-background-radius: 10;" text="View">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnOverdue" buttonType="RAISED" contentDisplay="RIGHT" layoutX="54.0" layoutY="409.0" onAction="#btnOverdueOnAction" prefHeight="35.0" prefWidth="131.0" style="-fx-background-color: #BFFB8B; -fx-background-radius: 10;" text="Overdues">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXTextField fx:id="txtID" layoutX="94.0" layoutY="99.0" onAction="#txtIDOnAction" prefHeight="24.0" prefWidth="131.0" />
+      <Label layoutX="66.0" layoutY="103.0" text="ID" />
+      <Label layoutX="66.0" layoutY="157.0" text="Member ID" />
+      <JFXComboBox fx:id="cmbMember" layoutX="66.0" layoutY="183.0" onAction="#cmbMemberOnAction" prefHeight="24.0" prefWidth="187.0" />
+      <Label layoutX="297.0" layoutY="158.0" text="Book 1 ID" />
+      <JFXComboBox fx:id="cmbBook1" layoutX="297.0" layoutY="184.0" onAction="#cmbBook1OnAction" prefHeight="24.0" prefWidth="116.0" />
+      <DatePicker fx:id="dtpDate" layoutX="66.0" layoutY="274.0" onAction="#dtpDateOnAction" />
+      <DatePicker fx:id="dtpDue" layoutX="292.0" layoutY="274.0" onAction="#dtpDueOnAction" />
+      <Label layoutX="66.0" layoutY="247.0" text="Date" />
+      <Label layoutX="293.0" layoutY="247.0" text="Due date" />
+      <Label layoutX="476.0" layoutY="158.0" text="Book 2 ID " />
+      <JFXComboBox fx:id="cmbBook2" layoutX="476.0" layoutY="184.0" onAction="#cmbBook2OnAction" prefHeight="24.0" prefWidth="116.0" />
+   </children>
+</AnchorPane>
