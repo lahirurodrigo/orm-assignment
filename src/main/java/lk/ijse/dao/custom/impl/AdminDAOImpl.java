@@ -3,9 +3,12 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.AdminDAO;
 import lk.ijse.entity.Admin;
+import lk.ijse.entity.Branch;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
+
+import java.util.List;
 
 public class AdminDAOImpl implements AdminDAO {
     @Override
@@ -61,6 +64,34 @@ public class AdminDAOImpl implements AdminDAO {
         }else{
             return false;
         }
+    }
+
+    @Override
+    public List<Admin> getAll() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        NativeQuery nativeQuery = session.createNativeQuery("SELECT * FROM Admin");
+        nativeQuery.addEntity(Admin.class);
+        List<Admin> admins  = nativeQuery.getResultList();
+
+        transaction.commit();
+        session.close();
+
+        return admins;
+    }
+
+    @Override
+    public Admin search(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Admin admin = session.get(Admin.class,id);
+
+        transaction.commit();
+        session.close();
+
+        return admin;
     }
 
     private String splitId(String currentId)throws Exception{
