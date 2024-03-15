@@ -72,5 +72,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <Label layoutX="56.0" layoutY="134.0" text="Return ID" />
+      <Label fx:id="lblID" layoutX="149.0" layoutY="134.0" prefHeight="16.0" prefWidth="305.0" />
    </children>
 </AnchorPane>

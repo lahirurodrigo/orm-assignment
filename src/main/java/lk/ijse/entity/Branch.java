@@ -1,9 +1,8 @@
 package lk.ijse.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Branch {
@@ -17,13 +16,17 @@ public class Branch {
     @JoinColumn(name = "admin_id")
     private Admin admin;
 
+    @OneToMany(mappedBy = "branch")
+    private List<Book> books;
+
     public Branch() {
     }
 
-    public Branch(String id, String name, Admin admin) {
+    public Branch(String id, String name, Admin admin, List<Book> books) {
         this.id = id;
         this.name = name;
         this.admin = admin;
+        this.books = books;
     }
 
     public String getId() {
@@ -48,6 +51,14 @@ public class Branch {
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override

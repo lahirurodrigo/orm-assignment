@@ -11,4 +11,6 @@ public interface ReturnBO extends SuperBO {
     boolean updateReturn(ReturnDTO returnDTO);
 
     ReturnDTO searchReturn(String borrowalId);
+
+    String generateNextReturnID() throws Exception;
 }

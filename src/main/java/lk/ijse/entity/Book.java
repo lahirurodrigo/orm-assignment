@@ -2,6 +2,7 @@ package lk.ijse.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -18,7 +19,7 @@ public class Book {
 
     private int quantity;
 
-    @OneToOne
+    @ManyToOne
     private Branch branch;
 
     public Book() {

@@ -22,7 +22,7 @@ public class Borrowals {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "borrowal_details",
             joinColumns = @JoinColumn(name = "borrowal_id"),

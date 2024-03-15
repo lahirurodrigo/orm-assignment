@@ -7,6 +7,7 @@ import lk.ijse.dao.custom.impl.AdminDAOImpl;
 import lk.ijse.dao.custom.impl.BranchDAOImpl;
 import lk.ijse.dto.BranchDTO;
 import lk.ijse.entity.Admin;
+import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
 
 import java.util.ArrayList;
@@ -26,7 +27,8 @@ public class BranchBOImpl implements BranchBO {
         return branchDAO.save(new Branch(
            branchDTO.getId(),
            branchDTO.getName(),
-           admin
+           admin,
+           new ArrayList<Book>()
         ));
     }
 
@@ -35,10 +37,15 @@ public class BranchBOImpl implements BranchBO {
 
         Admin admin = adminDAO.search(branchDTO.getAdmin_id());
 
+        Branch br = branchDAO.search(branchDTO.getId());
+
+        List<Book> books = br.getBooks();
+
         return branchDAO.update(new Branch(
                 branchDTO.getId(),
                 branchDTO.getName(),
-                admin
+                admin,
+                books
         ));
     }
 
@@ -59,10 +66,15 @@ public class BranchBOImpl implements BranchBO {
 
         Admin admin = adminDAO.search(branchDTO.getAdmin_id());
 
+        Branch br = branchDAO.search(branchDTO.getId());
+
+        List<Book> books = br.getBooks();
+
         return branchDAO.delete(new Branch(
                 branchDTO.getId(),
                 branchDTO.getName(),
-                admin
+                admin,
+                books
         ));
     }
 
