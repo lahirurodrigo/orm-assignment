@@ -45,7 +45,7 @@ public class SigninFormController implements Initializable {
     private AnchorPane rootVary;
 
     @FXML
-    private JFXTextField txtEmail;
+    private Label lblID;
 
     @FXML
     private JFXTextField txtPassword;
@@ -66,30 +66,34 @@ public class SigninFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addDataToCMB();
+        generateNextAdminId();
     }
 
-    private void addDataToCMB() {
-        ObservableList<String> obList = FXCollections.observableArrayList();
-        obList.add("Admin");
-        obList.add("User");
-        cmbType.setItems(obList);
+    private void generateNextAdminId() {
+        try{
+
+            String id = signinBO.genarateNextAdminId();
+            lblID.setText(id);
+
+        }catch (Exception e){
+
+        }
     }
+
 
     @FXML
     void btnSigninOnAction(ActionEvent event) {
+        String id = lblID.getText();
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        String email = txtEmail.getText();
-        String type = cmbType.getValue();
 
-        boolean valid = validateUser(username, password, email, type);
+        boolean valid = validateUser(username, password);
 
         if(!valid){
             return;
         }
 
-            AdminDTO adminDTO = new AdminDTO(username, password, email);
+            AdminDTO adminDTO = new AdminDTO(id,username, password);
 
             boolean saved = signinBO.saveAdmin(adminDTO);
 
@@ -98,7 +102,7 @@ public class SigninFormController implements Initializable {
 
     @FXML
     void txtPasswordOnAction(ActionEvent event) {
-        txtEmail.requestFocus();
+        btnSignin.requestFocus();
     }
 
     @FXML
@@ -106,17 +110,8 @@ public class SigninFormController implements Initializable {
         txtPassword.requestFocus();
     }
 
-    @FXML
-    void txtEmailOnAction(ActionEvent event) {
-        cmbType.requestFocus();
-    }
 
-    @FXML
-    void cmbTypeOnAction(ActionEvent event) {
-        btnSignin.requestFocus();
-    }
-
-    private boolean validateUser(String name,String password, String email, String type){
+    private boolean validateUser(String name,String password){
 
         boolean matches1 = Pattern.matches("[A-Za-z\\s]{3,}",name);
         if (!matches1){
@@ -130,16 +125,8 @@ public class SigninFormController implements Initializable {
             return false;
         }
 
-        boolean matches3 = Pattern.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$",email);
-        if (!matches3){
-            new Alert(Alert.AlertType.ERROR,"Invalid Customer email address").showAndWait();
-            return false;
-        }
 
-        if (cmbType.getValue() == null || cmbType.getValue().isEmpty()){
-            new Alert(Alert.AlertType.ERROR,"select a type").showAndWait();
-            return false;
-        }
+
 
         return true;
     }

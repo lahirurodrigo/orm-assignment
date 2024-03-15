@@ -5,10 +5,9 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Return {
+public class Returns {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @OneToOne
@@ -21,10 +20,10 @@ public class Return {
     @Temporal(TemporalType.DATE)
     private LocalDate return_date;
 
-    public Return() {
+    public Returns() {
     }
 
-    public Return(String id, Borrowals borrowals, LocalDate due_date, LocalDate return_date) {
+    public Returns(String id, Borrowals borrowals, LocalDate due_date, LocalDate return_date) {
         this.id = id;
         this.borrowals = borrowals;
         this.due_date = due_date;

@@ -32,7 +32,7 @@ public class FactoryConfiguration {
         configuration.addAnnotatedClass(Borrowals.class);
         configuration.addAnnotatedClass(Branch.class);
         configuration.addAnnotatedClass(Member.class);
-        configuration.addAnnotatedClass(Return.class);
+        configuration.addAnnotatedClass(Returns.class);
         sessionFactory = configuration.buildSessionFactory();
     }
 

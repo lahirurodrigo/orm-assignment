@@ -9,4 +9,6 @@ public interface SigninBO extends SuperBO {
     boolean saveAdmin(AdminDTO adminDTO);
 
     boolean saveMember(MemberDTO memberDTO);
+
+    String genarateNextAdminId() throws Exception;
 }

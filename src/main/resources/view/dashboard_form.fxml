@@ -62,7 +62,7 @@
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0">
                <image>
-                  <Image url="@../../../../../../Desktop/book.png" />
+                  <Image url="@../icons/bookBorrow.png" />
                </image>
             </ImageView>
          </graphic>
@@ -71,7 +71,7 @@
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0">
                <image>
-                  <Image url="@../../../../../../Desktop/return.png" />
+                  <Image url="@../icons/return.png" />
                </image>
             </ImageView>
          </graphic>

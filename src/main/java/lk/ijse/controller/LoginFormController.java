@@ -24,19 +24,13 @@ public class LoginFormController {
     private JFXButton btnLogin;
 
     @FXML
-    private Label btnSigninPage;
-
-    @FXML
-    private JFXComboBox<?> cmbType;
+    private JFXButton btnSigninPage;
 
     @FXML
     private AnchorPane rootNode;
 
     @FXML
     private AnchorPane rootVary;
-
-    @FXML
-    private JFXTextField txtEmail;
 
     @FXML
     private JFXTextField txtPassword;
@@ -52,40 +46,40 @@ public class LoginFormController {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
 
-        AdminDTO adminDTO = loginBO.checkCredentials(username);
-
-        /*  Uncomment this after connecting the database */
-
-        /*if (!(adminDTO.getPassword().equals(password))){
-            new Alert(Alert.AlertType.ERROR,"password incorrect").showAndWait();
+        if (username.isEmpty() || password.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"fields are empty").show();
             return;
-        }*/
+        }
 
-        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
-        this.rootVary.getChildren().clear();
-        this.rootVary.getChildren().add(rootNew);
+        boolean isMatch = false;
+        try {
+            isMatch = loginBO.checkCredentials(username,password);
+            if (!(isMatch)){
+                new Alert(Alert.AlertType.ERROR,"check username and password").showAndWait();
+                return;
+            }
+
+            Parent rootNew = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
+            this.rootVary.getChildren().clear();
+            this.rootVary.getChildren().add(rootNew);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @FXML
-    void btnSigninPageOnAction(MouseEvent event) throws IOException {
+    void btnSigninPageOnAction(ActionEvent event) throws IOException {
         Parent rootNew = FXMLLoader.load(getClass().getResource("/view/customer_form.fxml"));
         this.rootVary.getChildren().clear();
         this.rootVary.getChildren().add(rootNew);
     }
 
-    @FXML
-    void cmbTypeOnAction(ActionEvent event) {
-        btnLogin.requestFocus();
-    }
-
-    @FXML
-    void txtEmailOnAction(ActionEvent event) {
-        cmbType.requestFocus();
-    }
 
     @FXML
     void txtPasswordOnAction(ActionEvent event) {
-        txtEmail.requestFocus();
+        btnLogin.requestFocus();
     }
 
     @FXML

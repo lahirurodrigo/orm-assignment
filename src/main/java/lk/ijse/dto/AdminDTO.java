@@ -2,25 +2,33 @@ package lk.ijse.dto;
 
 public class AdminDTO {
 
-    private String username;
+    private String id;
+    private String name;
     private String password;
-    private String email;
 
     public AdminDTO() {
     }
 
-    public AdminDTO(String username, String password, String email) {
-        this.username = username;
+    public AdminDTO(String id, String name, String password) {
+        this.id = id;
+        this.name = name;
         this.password = password;
-        this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -31,20 +39,12 @@ public class AdminDTO {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @Override
     public String toString() {
         return "MemberDTO{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
+                "username='" + id + '\'' +
+                ", password='" + name + '\'' +
+                ", email='" + password + '\'' +
                 '}';
     }
 }

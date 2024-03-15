@@ -1,8 +1,6 @@
 package lk.ijse.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -11,6 +9,7 @@ public class Admin {
 
     @Id
     private String id;
+    @Column(unique = true)
     private String name;
     private String password;
 
