@@ -5,14 +5,22 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
+import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.custom.BorrowalBO;
 import lk.ijse.bo.custom.impl.BorrowalBOImpl;
 import lk.ijse.dto.BorrowalDTO;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class BorrowalFormController {
+
+
+    @FXML
+    private AnchorPane rootNode;
 
     @FXML
     private JFXButton btnAdd;
@@ -28,6 +36,9 @@ public class BorrowalFormController {
 
     @FXML
     private JFXButton btndelete;
+
+    @FXML
+    private JFXButton btnDashboard;
 
     @FXML
     private JFXComboBox<String> cmbBook1;
@@ -48,6 +59,13 @@ public class BorrowalFormController {
     private JFXTextField txtID;
 
     BorrowalBO borrowalBO = new BorrowalBOImpl();
+
+    @FXML
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
+        this.rootNode.getChildren().clear();
+        this.rootNode.getChildren().add(rootNew);
+    }
 
     @FXML
     void btnAddOnAction(ActionEvent event) {

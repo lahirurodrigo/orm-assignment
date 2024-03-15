@@ -5,8 +5,17 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public class BooksFormController {
+
+
+    @FXML
+    private AnchorPane rootNode;
 
     @FXML
     private JFXButton btnAdd;
@@ -22,6 +31,9 @@ public class BooksFormController {
 
     @FXML
     private JFXButton btnBookList;
+
+    @FXML
+    private JFXButton btnDashboard;
 
     @FXML
     private JFXComboBox<String> cmbBranch;
@@ -43,6 +55,13 @@ public class BooksFormController {
 
     @FXML
     private JFXTextField txtTitle;
+
+    @FXML
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
+        this.rootNode.getChildren().clear();
+        this.rootNode.getChildren().add(rootNew);
+    }
 
     @FXML
     void btnAddOnAction(ActionEvent event) {

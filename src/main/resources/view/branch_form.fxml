@@ -4,20 +4,22 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="480.0" prefWidth="640.0" style="-fx-background-image: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BranchFormController">
+<AnchorPane fx:id="rootNode" prefHeight="480.0" prefWidth="640.0" style="-fx-background-image: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BranchFormController">
    <children>
-      <Label layoutX="206.0" layoutY="27.0" text="Branches">
+      <Label layoutX="210.0" layoutY="78.0" text="Branches">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="200.0" layoutY="131.0" text="Branch ID" />
-      <Label layoutX="175.0" layoutY="192.0" text="Branch Name" />
-      <JFXTextField fx:id="txtID" layoutX="286.0" layoutY="127.0" onAction="#txtIDOnAction" prefHeight="24.0" prefWidth="224.0" />
-      <JFXTextField fx:id="txtName" layoutX="286.0" layoutY="188.0" onAction="#txtNameOnAction" prefHeight="24.0" prefWidth="224.0" />
+      <Label layoutX="190.0" layoutY="188.0" text="Branch ID" />
+      <Label layoutX="165.0" layoutY="249.0" text="Branch Name" />
+      <JFXTextField fx:id="txtID" layoutX="276.0" layoutY="184.0" onAction="#txtIDOnAction" prefHeight="24.0" prefWidth="224.0" />
+      <JFXTextField fx:id="txtName" layoutX="276.0" layoutY="245.0" onAction="#txtNameOnAction" prefHeight="24.0" prefWidth="224.0" />
       <JFXButton fx:id="btnAdd" buttonType="RAISED" contentDisplay="RIGHT" layoutX="104.0" layoutY="328.0" onAction="#btnAddOnAction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #C4F9FF; -fx-background-radius: 10;" text="Add">
          <font>
             <Font name="System Bold" size="10.0" />
@@ -49,6 +51,15 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnDashboard" buttonType="RAISED" layoutX="506.0" layoutY="23.0" onAction="#btnDashboardOnAction" style="-fx-background-color: white;" text="Dashboard">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../icons/dashboard.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </JFXButton>
    </children>
 </AnchorPane>

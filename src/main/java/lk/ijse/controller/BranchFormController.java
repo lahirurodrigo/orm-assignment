@@ -4,14 +4,22 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.bo.custom.impl.BranchBOImpl;
 import lk.ijse.dto.BranchDTO;
 
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class BranchFormController {
+
+
+    @FXML
+    private AnchorPane rootNode;
 
     @FXML
     private JFXButton btnAdd;
@@ -26,12 +34,22 @@ public class BranchFormController {
     private JFXButton btndelete;
 
     @FXML
+    private JFXButton btnDashboard;
+
+    @FXML
     private JFXTextField txtID;
 
     @FXML
     private JFXTextField txtName;
 
     BranchBO branchBO = new BranchBOImpl();
+
+    @FXML
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
+        this.rootNode.getChildren().clear();
+        this.rootNode.getChildren().add(rootNew);
+    }
 
     @FXML
     void btnAddOnAction(ActionEvent event) {

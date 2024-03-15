@@ -4,11 +4,20 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.custom.MemberBO;
 import lk.ijse.bo.custom.impl.MemberBOImpl;
 import lk.ijse.dto.MemberDTO;
 
+import java.io.IOException;
+
 public class MemberFormController {
+
+
+    @FXML
+    private AnchorPane rootNode;
 
     @FXML
     private JFXButton btnAdd;
@@ -26,6 +35,9 @@ public class MemberFormController {
     private JFXButton btndelete;
 
     @FXML
+    private JFXButton btnDashboard;
+
+    @FXML
     private JFXTextField txtEmail;
 
     @FXML
@@ -35,6 +47,13 @@ public class MemberFormController {
     private JFXTextField txtName;
 
     MemberBO memberBO = new MemberBOImpl();
+
+    @FXML
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
+        this.rootNode.getChildren().clear();
+        this.rootNode.getChildren().add(rootNew);
+    }
 
     @FXML
     void btnAddOnAction(ActionEvent event) {

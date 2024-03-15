@@ -5,13 +5,14 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.ReturnsFormController">
+<AnchorPane fx:id="rootNode" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.ReturnsFormController">
    <children>
-      <Label layoutX="240.0" layoutY="26.0" text="Returns">
+      <Label layoutX="240.0" layoutY="62.0" text="Returns">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -56,11 +57,20 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label layoutX="65.0" layoutY="113.0" text="Borrowal ID" />
-      <JFXComboBox fx:id="cmbBorrowalId" layoutX="64.0" layoutY="135.0" onAction="#cmbBorrowalIdOnAction" prefHeight="24.0" prefWidth="187.0" />
-      <DatePicker fx:id="dtpDue" layoutX="64.0" layoutY="216.0" onAction="#dtpDueOnAction" />
-      <Label layoutX="65.0" layoutY="189.0" text="Due date" />
-      <DatePicker fx:id="dtpReturnDate" layoutX="397.0" layoutY="213.0" onAction="#dtpReturnDateOnAction" />
-      <Label layoutX="397.0" layoutY="186.0" text="Return date" />
+      <Label layoutX="56.0" layoutY="165.0" text="Borrowal ID" />
+      <JFXComboBox fx:id="cmbBorrowalId" layoutX="55.0" layoutY="187.0" onAction="#cmbBorrowalIdOnAction" prefHeight="24.0" prefWidth="187.0" />
+      <DatePicker fx:id="dtpDue" layoutX="55.0" layoutY="268.0" onAction="#dtpDueOnAction" />
+      <Label layoutX="56.0" layoutY="241.0" text="Due date" />
+      <DatePicker fx:id="dtpReturnDate" layoutX="388.0" layoutY="265.0" onAction="#dtpReturnDateOnAction" />
+      <Label layoutX="388.0" layoutY="238.0" text="Return date" />
+      <JFXButton fx:id="btnDashboard" buttonType="RAISED" layoutX="495.0" layoutY="24.0" onAction="#btnDashboardOnAction" style="-fx-background-color: white;" text="Dashboard">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../icons/dashboard.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>
