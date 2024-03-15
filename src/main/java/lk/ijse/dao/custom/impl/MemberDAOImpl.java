@@ -3,10 +3,14 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.MemberDAO;
 import lk.ijse.entity.Book;
+import lk.ijse.entity.Borrowals;
+import lk.ijse.entity.Branch;
 import lk.ijse.entity.Member;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
+
+import java.util.List;
 
 public class MemberDAOImpl implements MemberDAO {
     @Override
@@ -76,6 +80,22 @@ public class MemberDAOImpl implements MemberDAO {
         }else{
             return splitId(null);
         }
+    }
+
+    @Override
+    public List<Member> getAll() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        NativeQuery nativeQuery = session.createNativeQuery("SELECT * FROM Member");
+        nativeQuery.addEntity(Member.class);
+        List<Member> members = nativeQuery.getResultList();
+
+
+        transaction.commit();
+        session.close();
+
+        return members;
     }
 
     private String splitId(String currentId) throws Exception{

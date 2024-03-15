@@ -1,22 +1,20 @@
 package lk.ijse.dao.custom.impl;
 
 import lk.ijse.config.FactoryConfiguration;
-import lk.ijse.dao.custom.BookDAO;
+import lk.ijse.dao.custom.BorrowalDAO;
 import lk.ijse.entity.Book;
-import lk.ijse.entity.Branch;
+import lk.ijse.entity.Borrowals;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
-import java.util.List;
-
-public class BookDAOImpl implements BookDAO {
+public class BorrowalDAOImpl implements BorrowalDAO {
     @Override
-    public boolean save(Book book) {
+    public boolean save(Borrowals borrowal) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.save(book);
+        session.save(borrowal);
 
         transaction.commit();
         session.close();
@@ -25,11 +23,11 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public boolean update(Book book) {
+    public boolean update(Borrowals borrowals) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.update(book);
+        session.update(borrowals);
 
         transaction.commit();
         session.close();
@@ -38,24 +36,24 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public Book search(String id) {
+    public Borrowals search(String id) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Book book = session.get(Book.class,id);
+        Borrowals borrowal = session.get(Borrowals.class,id);
 
         transaction.commit();
         session.close();
 
-        return book;
+        return borrowal;
     }
 
     @Override
-    public boolean delete(Book book) {
+    public boolean delete(Borrowals borrowals) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.remove(book);
+        session.remove(borrowals);
 
         transaction.commit();
         session.close();
@@ -68,7 +66,7 @@ public class BookDAOImpl implements BookDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        NativeQuery<String> nativeQuery = session.createNativeQuery("SELECT id FROM Book ORDER BY id DESC LIMIT 1");
+        NativeQuery<String> nativeQuery = session.createNativeQuery("SELECT id FROM Borrowals ORDER BY id DESC LIMIT 1");
         String id = nativeQuery.uniqueResult();
         transaction.commit();
         session.close();
@@ -80,55 +78,23 @@ public class BookDAOImpl implements BookDAO {
         }
     }
 
-    @Override
-    public List<Book> getAll() {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        NativeQuery nativeQuery = session.createNativeQuery("SELECT * FROM Book");
-        nativeQuery.addEntity(Book.class);
-        List<Book> books = nativeQuery.getResultList();
-
-
-        transaction.commit();
-        session.close();
-
-        return books;
-    }
-
-    @Override
-    public List<Book> getAvailableBooks() {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        NativeQuery nativeQuery = session.createNativeQuery("SELECT * FROM Book WHERE quantity>0");
-        nativeQuery.addEntity(Book.class);
-        List<Book> books = nativeQuery.getResultList();
-
-
-        transaction.commit();
-        session.close();
-
-        return books;
-    }
-
     private String splitId(String currentId)throws Exception {
         if(currentId != null) {
-            String[] strings = currentId.split("B0");
+            String[] strings = currentId.split("BR0");
             int id = Integer.parseInt(strings[1]);
             id++;
             String ID = String.valueOf(id);
             int length = ID.length();
             if (length < 2){
-                return "B00"+id;
+                return "BR00"+id;
             }else {
                 if (length < 3){
-                    return "B0"+id;
+                    return "BR0"+id;
                 }else {
-                    return "B"+id;
+                    return "BR"+id;
                 }
             }
         }
-        return "B001";
+        return "BR001";
     }
 }
