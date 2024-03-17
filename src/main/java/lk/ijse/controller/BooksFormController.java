@@ -113,6 +113,10 @@ public class BooksFormController implements Initializable {
     @FXML
     void btnAddOnAction(ActionEvent event) {
 
+        if(cmbStatus.getValue().isBlank()||cmbStatus.getValue().isEmpty()){
+            new Alert(Alert.AlertType.WARNING,"Select status").showAndWait();
+        }
+
         String id = txtID.getText();
         String title = txtTitle.getText();
         String author = txtAuthor.getText();
@@ -132,6 +136,13 @@ public class BooksFormController implements Initializable {
     }
 
     private void clearFields() {
+        txtID.clear();
+        txtTitle.clear();
+        txtAuthor.clear();
+        txtGenre.clear();
+        txtQuantity.clear();
+        cmbBranch.getSelectionModel().clearSelection();
+        cmbStatus.getSelectionModel().clearSelection();
     }
 
     @FXML

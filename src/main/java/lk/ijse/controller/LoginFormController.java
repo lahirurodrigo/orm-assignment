@@ -68,7 +68,7 @@ public class LoginFormController {
 
     @FXML
     void btnSigninPageOnAction(ActionEvent event) throws IOException {
-        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/customer_form.fxml"));
+        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/signin_form.fxml"));
         this.rootVary.getChildren().clear();
         this.rootVary.getChildren().add(rootNew);
     }

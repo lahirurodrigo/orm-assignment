@@ -34,9 +34,6 @@ public class SigninFormController implements Initializable {
     @FXML
     private JFXButton btnLoginPage;
 
-    @FXML
-    private JFXComboBox<String> cmbType;
-
 
     @FXML
     private AnchorPane rootNode;
@@ -58,7 +55,6 @@ public class SigninFormController implements Initializable {
     @FXML
     void btnLoginPageOnAction(ActionEvent event) throws IOException {
 
-        System.out.println("hi");
         Parent rootNew = FXMLLoader.load(this.getClass().getResource("/view/login_form.fxml"));
         this.rootNode.getChildren().clear();
         this.rootNode.getChildren().add(rootNew);
@@ -82,7 +78,7 @@ public class SigninFormController implements Initializable {
 
 
     @FXML
-    void btnSigninOnAction(ActionEvent event) {
+    void btnSigninOnAction(ActionEvent event) throws IOException {
         String id = lblID.getText();
         String username = txtUsername.getText();
         String password = txtPassword.getText();
@@ -95,7 +91,16 @@ public class SigninFormController implements Initializable {
 
             AdminDTO adminDTO = new AdminDTO(id,username, password);
 
-            boolean saved = signinBO.saveAdmin(adminDTO);
+            boolean isSaved = signinBO.saveAdmin(adminDTO);
+
+            if (isSaved){
+                new Alert(Alert.AlertType.CONFIRMATION,"Account created Successfully!").showAndWait();
+                Parent rootNew = FXMLLoader.load(this.getClass().getResource("/view/login_form.fxml"));
+                this.rootNode.getChildren().clear();
+                this.rootNode.getChildren().add(rootNew);
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Account creation unsuccessful").showAndWait();
+            }
 
 
     }

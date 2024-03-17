@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.custom.BorrowalBO;
 import lk.ijse.bo.custom.impl.BorrowalBOImpl;
@@ -65,6 +66,16 @@ public class BorrowalFormController implements Initializable {
 
     @FXML
     private JFXComboBox<String> cmbMember;
+
+
+    @FXML
+    private Label lblB1Name;
+
+    @FXML
+    private Label lblB2Name;
+
+    @FXML
+    private Label lblMName;
 
     @FXML
     private DatePicker dtpDate;
@@ -229,28 +240,34 @@ public class BorrowalFormController implements Initializable {
         cmbMember.setValue(borrowalDTO.getMemberId());
         cmbBook1.setValue(borrowalDTO.getBook1Id());
         cmbBook2.setValue(borrowalDTO.getBook2Id());
-        dtpDate.getValue();
-        dtpDue.getValue();
+        dtpDate.setValue(borrowalDTO.getDate());
+        dtpDue.setValue(borrowalDTO.getDuedate());
     }
 
     @FXML
     void cmbBook1OnAction(ActionEvent event) {
+
+        lblB1Name.setText(bookDAO.search(cmbBook1.getValue()).getTitle());
         cmbBook2.requestFocus();
     }
 
     @FXML
     void cmbBook2OnAction(ActionEvent event) {
-        dtpDate.requestFocus();
+        lblB2Name.setText(bookDAO.search(cmbBook2.getValue()).getTitle());
+        dtpDue.requestFocus();
+
     }
 
     @FXML
     void cmbMemberOnAction(ActionEvent event) {
+
+        lblMName.setText(memberDAO.search(cmbMember.getValue()).getName());
         cmbBook1.requestFocus();
     }
 
     @FXML
     void dtpDateOnAction(ActionEvent event) {
-        dtpDue.requestFocus();
+        cmbMember.requestFocus();
     }
 
     @FXML
@@ -260,7 +277,7 @@ public class BorrowalFormController implements Initializable {
 
     @FXML
     void txtIDOnAction(ActionEvent event) {
-        cmbMember.requestFocus();
+        dtpDate.requestFocus();
     }
 
 }

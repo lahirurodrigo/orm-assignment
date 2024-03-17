@@ -9,9 +9,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.bo.custom.BorrowalBO;
 import lk.ijse.bo.custom.ReturnBO;
 import lk.ijse.bo.custom.impl.BorrowalBOImpl;
@@ -59,7 +61,16 @@ public class ReturnsFormController implements Initializable {
     private JFXButton btnDashboard;
 
     @FXML
+    private Label lblB1;
+
+    @FXML
+    private Label lblB2;
+
+    @FXML
     private Label lblID;
+
+    @FXML
+    private Label lblM;
 
     @FXML
     private JFXComboBox<String> cmbBorrowalId;
@@ -168,8 +179,14 @@ public class ReturnsFormController implements Initializable {
     }
 
     @FXML
-    void btnOverdueOnAction(ActionEvent event) {
-
+    void btnOverdueOnAction(ActionEvent event) throws IOException {
+        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/overdues_form.fxml"));
+        Scene scene = new Scene(rootNew);
+        Stage stage = new Stage();
+        stage.setTitle("BookWorm");
+        stage.setScene(scene);
+        stage.show();
+        stage.centerOnScreen();
     }
 
     @FXML
@@ -199,7 +216,11 @@ public class ReturnsFormController implements Initializable {
 
     @FXML
     void cmbBorrowalIdOnAction(ActionEvent event) {
-        dtpDue.setValue(borrowalDAO.search(cmbBorrowalId.getValue()).getDue_date());
+        Borrowals borrowal = borrowalDAO.search(cmbBorrowalId.getValue());
+        dtpDue.setValue(borrowal.getDue_date());
+        lblM.setText(borrowal.getMember().getId()+"  "+borrowal.getMember().getName());
+        lblB1.setText(borrowal.getBooks().get(0).getTitle());
+        lblB2.setText(borrowal.getBooks().get(1).getTitle());
         dtpDue.requestFocus();
     }
 

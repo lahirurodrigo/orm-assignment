@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.OverduesFormController">
+   <children>
+      <TableView fx:id="tblTimeOut" layoutX="13.0" layoutY="121.0" onMouseClicked="#mouseClickOnAction" prefHeight="429.0" prefWidth="1123.0">
+         <columns>
+            <TableColumn fx:id="colBorrowal" prefWidth="113.0" text="BorrowalID" />
+            <TableColumn fx:id="colUser" prefWidth="113.0" text="MemberID" />
+            <TableColumn fx:id="colName" prefWidth="265.0" text="Name" />
+            <TableColumn fx:id="colBook1Id" prefWidth="124.0" text="Book ID" />
+            <TableColumn fx:id="colBookId" prefWidth="124.0" text="Book ID" />
+            <TableColumn fx:id="colBorrowDate" prefWidth="183.0" text="BorrowDate" />
+            <TableColumn fx:id="colReturnDate" minWidth="0.0" prefWidth="199.0" text="Duedate" />
+         </columns>
+      </TableView>
+      <Label layoutX="380.0" layoutY="41.0" text="Overdue Borrowals">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

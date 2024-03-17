@@ -100,8 +100,8 @@ public class BorrowalBOImpl implements BorrowalBO {
         return new BorrowalDTO(
                 borrowals.getId(),
                 borrowals.getMember().getId(),
+                borrowals.getBooks().get(0).getId(),
                 borrowals.getBooks().get(1).getId(),
-                borrowals.getBooks().get(2).getId(),
                 borrowals.getBorrow_date(),
                 borrowals.getDue_date()
         );

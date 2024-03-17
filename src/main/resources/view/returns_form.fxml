@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="rootNode" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.ReturnsFormController">
    <children>
-      <Label layoutX="240.0" layoutY="62.0" text="Returns">
+      <Label layoutX="240.0" layoutY="44.0" text="Returns">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -58,12 +58,12 @@
          </cursor>
       </JFXButton>
       <Label layoutX="56.0" layoutY="165.0" text="Borrowal ID" />
-      <JFXComboBox fx:id="cmbBorrowalId" layoutX="55.0" layoutY="187.0" onAction="#cmbBorrowalIdOnAction" prefHeight="24.0" prefWidth="187.0" />
-      <DatePicker fx:id="dtpDue" layoutX="55.0" layoutY="268.0" onAction="#dtpDueOnAction" />
-      <Label layoutX="56.0" layoutY="241.0" text="Due date" />
-      <DatePicker fx:id="dtpReturnDate" layoutX="388.0" layoutY="265.0" onAction="#dtpReturnDateOnAction" />
-      <Label layoutX="388.0" layoutY="238.0" text="Return date" />
-      <JFXButton fx:id="btnDashboard" buttonType="RAISED" layoutX="495.0" layoutY="24.0" onAction="#btnDashboardOnAction" style="-fx-background-color: white;" text="Dashboard">
+      <JFXComboBox fx:id="cmbBorrowalId" layoutX="149.0" layoutY="161.0" onAction="#cmbBorrowalIdOnAction" prefHeight="24.0" prefWidth="131.0" />
+      <DatePicker fx:id="dtpDue" layoutX="56.0" layoutY="346.0" onAction="#dtpDueOnAction" />
+      <Label layoutX="57.0" layoutY="319.0" text="Due date" />
+      <DatePicker fx:id="dtpReturnDate" layoutX="327.0" layoutY="344.0" onAction="#dtpReturnDateOnAction" />
+      <Label layoutX="327.0" layoutY="317.0" text="Return date" />
+      <JFXButton fx:id="btnDashboard" buttonType="RAISED" layoutX="504.0" layoutY="14.0" onAction="#btnDashboardOnAction" style="-fx-background-color: white;" text="Dashboard">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0">
                <image>
@@ -72,7 +72,28 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="56.0" layoutY="134.0" text="Return ID" />
-      <Label fx:id="lblID" layoutX="149.0" layoutY="134.0" prefHeight="16.0" prefWidth="305.0" />
+      <Label layoutX="56.0" layoutY="126.0" text="Return ID" />
+      <Label fx:id="lblID" layoutX="149.0" layoutY="126.0" prefHeight="24.0" prefWidth="305.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="56.0" layoutY="206.0" text="Member" />
+      <Label layoutX="56.0" layoutY="240.0" text="Book 1" />
+      <Label layoutX="56.0" layoutY="279.0" text="Book 2" />
+      <Label fx:id="lblM" layoutX="149.0" layoutY="200.0" prefHeight="28.0" prefWidth="334.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblB1" layoutX="149.0" layoutY="234.0" prefHeight="28.0" prefWidth="334.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblB2" layoutX="149.0" layoutY="273.0" prefHeight="28.0" prefWidth="334.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
