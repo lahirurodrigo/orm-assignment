@@ -1,5 +1,7 @@
 package lk.ijse.dao.custom;
 
-public interface ReturnsDAO {
+import lk.ijse.dao.SuperDAO;
+
+public interface ReturnsDAO extends SuperDAO {
     String generateNext() throws Exception;
 }

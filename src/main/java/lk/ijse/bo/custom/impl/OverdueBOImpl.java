@@ -3,6 +3,7 @@ package lk.ijse.bo.custom.impl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lk.ijse.bo.custom.OverdueBO;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.QueryDAO;
 import lk.ijse.dao.custom.impl.QueryDAOImpl;
 import lk.ijse.dto.tm.OverdueTM;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class OverdueBOImpl implements OverdueBO {
 
-    QueryDAO queryDAO = new QueryDAOImpl();
+    QueryDAO queryDAO = (QueryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.QUERY);
     @Override
     public ObservableList<OverdueTM> getAllOverdues() {
 

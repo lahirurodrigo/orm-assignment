@@ -10,12 +10,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BorrowalBO;
 import lk.ijse.bo.custom.impl.BorrowalBOImpl;
 import lk.ijse.config.FactoryConfiguration;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BookDAO;
 import lk.ijse.dao.custom.MemberDAO;
 import lk.ijse.dao.custom.impl.BookDAOImpl;
@@ -86,17 +89,18 @@ public class BorrowalFormController implements Initializable {
     @FXML
     private JFXTextField txtID;
 
-    BorrowalBO borrowalBO = new BorrowalBOImpl();
+    BorrowalBO borrowalBO = (BorrowalBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BORROW);
 
-    MemberDAO memberDAO = new MemberDAOImpl();
+    MemberDAO memberDAO = (MemberDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.USER);
 
-    BookDAO bookDAO = new BookDAOImpl();
+    BookDAO bookDAO = (BookDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.BOOK);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         generateNextBorrowalId();
         loadAllMembers();
         loadAvailableBooks();
+        dtpDate.setValue(LocalDate.now());
     }
 
     private void loadAllMembers() {
@@ -155,6 +159,17 @@ public class BorrowalFormController implements Initializable {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
+
+        if (cmbMember.getValue() == null || cmbMember.getValue().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Select a member").showAndWait();
+            return;
+        }
+
+        if (cmbBook1.getValue() == null || cmbBook1.getValue().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Select a Book 1").showAndWait();
+            return;
+        }
+
         String id = txtID.getText();
         String memberId = cmbMember.getValue();
         String book1Id = cmbBook1.getValue();
@@ -162,13 +177,17 @@ public class BorrowalFormController implements Initializable {
         LocalDate date = dtpDate.getValue();
         LocalDate duedate = dtpDue.getValue();
 
+        if (book1Id.equals(book2Id)){
+            new Alert(Alert.AlertType.WARNING, "Select a different Book").showAndWait();
+        }
+
         Member member = memberDAO.search(memberId);
 
         List<Book> books = new ArrayList<>();
 
         books.add(bookDAO.search(book1Id));
 
-        if (!(book2Id.equals(null))){
+        if (!(book2Id == null || book2Id.isEmpty())){
             books.add(bookDAO.search(book2Id));
         }
 
@@ -203,13 +222,29 @@ public class BorrowalFormController implements Initializable {
 
             transaction.commit();
 
+            new Alert(Alert.AlertType.CONFIRMATION,"Borrowals recorded Successfully!").showAndWait();
+
         }catch (Exception e){
             transaction.rollback();
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,"Borrowals recording unsuccessful").showAndWait();
         }finally {
             session.close();
+            clearFields();
         }
 
+
+    }
+
+    private void clearFields() {
+        txtID.clear();
+        /*cmbMember.setValue("");
+        cmbBook1.setValue("");
+        cmbBook2.setValue("");*/
+        lblMName.setText(null);
+        lblB1Name.setText(null);
+        lblB2Name.setText(null);
+        dtpDue.setValue(null);
+        dtpDate.setValue(LocalDate.now());
     }
 
     @FXML
@@ -253,6 +288,17 @@ public class BorrowalFormController implements Initializable {
 
     @FXML
     void cmbBook2OnAction(ActionEvent event) {
+
+        if (cmbBook1.getValue() == null || cmbBook1.getValue().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Select a Book 1").showAndWait();
+            return;
+        }
+
+        if (cmbBook1.getValue().equals(cmbBook2.getValue())){
+            new Alert(Alert.AlertType.WARNING, "Select a different book").showAndWait();
+            return;
+        }
+
         lblB2Name.setText(bookDAO.search(cmbBook2.getValue()).getTitle());
         dtpDue.requestFocus();
 
@@ -260,7 +306,6 @@ public class BorrowalFormController implements Initializable {
 
     @FXML
     void cmbMemberOnAction(ActionEvent event) {
-
         lblMName.setText(memberDAO.search(cmbMember.getValue()).getName());
         cmbBook1.requestFocus();
     }

@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.SigninBO;
 import lk.ijse.bo.custom.impl.SigninBOImpl;
 import lk.ijse.dto.AdminDTO;
@@ -50,7 +51,7 @@ public class SigninFormController implements Initializable {
     @FXML
     private JFXTextField txtUsername;
 
-    SigninBO signinBO = new SigninBOImpl();
+    SigninBO signinBO = (SigninBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SIGNIN);
 
     @FXML
     void btnLoginPageOnAction(ActionEvent event) throws IOException {

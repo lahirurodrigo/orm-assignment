@@ -51,19 +51,25 @@ public class AdminDAOImpl implements AdminDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        NativeQuery<String> query = session.createNativeQuery("select password from Admin where name = :name");
-        query.setParameter("name",admin.getName());
-        String password= query.uniqueResult();
+        try {
+            NativeQuery<String> query = session.createNativeQuery("select password from Admin where name = :name");
+            query.setParameter("name", admin.getName());
+            String password = query.uniqueResult();
 
-        transaction.commit();
-        session.close();
+            transaction.commit();
 
+            if (password.equals(admin.getPassword())) {
+                return true;
+            } else {
+                return false;
+            }
 
-        if(password.equals(admin.getPassword())){
-            return true;
-        }else{
+        } catch (Exception e) {
             return false;
+        } finally {
+            session.close();
         }
+
     }
 
     @Override

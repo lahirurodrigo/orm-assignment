@@ -3,6 +3,7 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.QueryDAO;
 import lk.ijse.entity.Borrowals;
+import lk.ijse.entity.Member;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
@@ -34,6 +35,7 @@ public class QueryDAOImpl implements QueryDAO {
                     "WHERE r.borrowal_id IS NULL;");
 
             objects = nativeQuery.getResultList();
+            transaction.commit();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -61,7 +63,60 @@ public class QueryDAOImpl implements QueryDAO {
         query.setParameter("currentDate", date);
 
         List<Borrowals> borrowals = query.getResultList();
-
+        transaction.commit();
+        session.close();
         return borrowals;
+    }
+
+    @Override
+    public List<Member> getValidMembers() {
+
+        List<Member> members = new ArrayList<>();
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT DISTINCT m\n" +
+                "FROM Member m\n" +
+                "LEFT JOIN Borrowals b ON m = b.member\n" +
+                "LEFT JOIN Returns r ON b = r.borrowals\n" +
+                "GROUP BY m.id\n" +
+                "HAVING COUNT(b) = 0 OR COUNT(r) = COUNT(b)");
+
+        List<Member> list = query.getResultList();
+        for (Member member : list ){
+            System.out.println(member.getId()+"\n");
+        }
+        transaction.commit();
+        session.close();
+
+
+        return list;
+
+    }
+
+    @Override
+    public List<Member> getOverdueMembers(){
+        List<Member> members = new ArrayList<>();
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT DISTINCT m\n " +
+                "FROM Member m \n" +
+                "JOIN Borrowals b ON m = b.member \n" +
+                "LEFT JOIN Returns r ON b = r.borrowals \n" +
+                "WHERE (r IS NULL AND b.due_date < :date) OR r.return_date > b.due_date");
+        query.setParameter("date",LocalDate.now());
+        members = query.getResultList();
+
+        transaction.commit();
+        session.close();
+
+        for (Member m : members){
+            System.out.println(m.getId()+"\n");
+        }
+
+        return members;
     }
 }

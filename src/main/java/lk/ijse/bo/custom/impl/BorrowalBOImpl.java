@@ -1,12 +1,15 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.BorrowalBO;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BookDAO;
 import lk.ijse.dao.custom.BorrowalDAO;
 import lk.ijse.dao.custom.MemberDAO;
+import lk.ijse.dao.custom.QueryDAO;
 import lk.ijse.dao.custom.impl.BookDAOImpl;
 import lk.ijse.dao.custom.impl.BorrowalDAOImpl;
 import lk.ijse.dao.custom.impl.MemberDAOImpl;
+import lk.ijse.dao.custom.impl.QueryDAOImpl;
 import lk.ijse.dto.BorrowalDTO;
 import lk.ijse.entity.Book;
 import lk.ijse.entity.Borrowals;
@@ -17,11 +20,13 @@ import java.util.List;
 
 public class BorrowalBOImpl implements BorrowalBO {
 
-    BorrowalDAO borrowalDAO = new BorrowalDAOImpl();
+    BorrowalDAO borrowalDAO = (BorrowalDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.BORROW);
 
-    BookDAO bookDAO = new BookDAOImpl();
+    BookDAO bookDAO = (BookDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.BOOK);
 
-    MemberDAO memberDAO = new MemberDAOImpl();
+    MemberDAO memberDAO = (MemberDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.USER);
+
+    QueryDAO queryDAO = (QueryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.QUERY);
 
     @Override
     public boolean addBorrowal(BorrowalDTO borrowalDTO) {
@@ -115,7 +120,7 @@ public class BorrowalBOImpl implements BorrowalBO {
 
     @Override
     public List<String> loadAllMembers() {
-        List<Member> list = memberDAO.getAll();
+        List<Member> list = queryDAO.getValidMembers();
         List<String> ids = new ArrayList<>();
 
         for ( Member member : list){

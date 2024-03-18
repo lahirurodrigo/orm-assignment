@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.bo.custom.impl.BranchBOImpl;
 import lk.ijse.dto.BranchDTO;
@@ -53,7 +54,7 @@ public class BranchFormController implements Initializable {
     @FXML
     private JFXTextField txtName;
 
-    BranchBO branchBO = new BranchBOImpl();
+    BranchBO branchBO = (BranchBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BRANCH);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -131,7 +132,7 @@ public class BranchFormController implements Initializable {
             new Alert(Alert.AlertType.CONFIRMATION,"Branch deleted Successfully!").showAndWait();
             clearFields();
         }else{
-            new Alert(Alert.AlertType.ERROR,"Branch deleting unsuccessful").showAndWait();
+            new Alert(Alert.AlertType.ERROR,"Remove the Books").showAndWait();
         }
 
     }

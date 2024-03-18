@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.LoginBO;
 import lk.ijse.bo.custom.impl.LoginBOImpl;
 import lk.ijse.dto.AdminDTO;
@@ -35,7 +36,7 @@ public class LoginFormController {
     @FXML
     private JFXTextField txtUsername;
 
-    LoginBO loginBO = new LoginBOImpl();
+    LoginBO loginBO = (LoginBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.LOGIN);
 
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {

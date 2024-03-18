@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.OverdueBO;
 import lk.ijse.bo.custom.impl.OverdueBOImpl;
 import lk.ijse.dto.tm.OverdueTM;
@@ -41,7 +42,7 @@ public class OverduesFormController implements Initializable {
     @FXML
     private TableView<OverdueTM> tblTimeOut;
 
-    OverdueBO overdueBO = new OverdueBOImpl();
+    OverdueBO overdueBO = (OverdueBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.OVERDUE);;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

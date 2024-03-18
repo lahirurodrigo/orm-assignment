@@ -1,6 +1,7 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.BranchBO;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.AdminDAO;
 import lk.ijse.dao.custom.BranchDAO;
 import lk.ijse.dao.custom.impl.AdminDAOImpl;
@@ -15,9 +16,9 @@ import java.util.List;
 
 public class BranchBOImpl implements BranchBO {
 
-    BranchDAO branchDAO = new BranchDAOImpl();
+    BranchDAO branchDAO = (BranchDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.BRANCH);
 
-    AdminDAO adminDAO = new AdminDAOImpl();
+    AdminDAO adminDAO = (AdminDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.ADMIN);
 
     @Override
     public boolean saveBranch(BranchDTO branchDTO) {

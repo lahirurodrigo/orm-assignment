@@ -1,6 +1,7 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.BookBO;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BookDAO;
 import lk.ijse.dao.custom.BranchDAO;
 import lk.ijse.dao.custom.impl.BookDAOImpl;
@@ -15,9 +16,9 @@ import java.util.List;
 
 public class BookBOImpl implements BookBO {
 
-    BranchDAO branchDAO = new BranchDAOImpl();
+    BranchDAO branchDAO = (BranchDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.BRANCH);
 
-    BookDAO bookDAO = new BookDAOImpl();
+    BookDAO bookDAO = (BookDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.BOOK);
     @Override
     public boolean saveBook(BookDTO bookDTO) {
         Branch branch = branchDAO.search(bookDTO.getBranch());

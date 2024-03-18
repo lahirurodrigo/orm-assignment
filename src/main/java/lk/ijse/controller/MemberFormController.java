@@ -7,8 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.MemberBO;
 import lk.ijse.bo.custom.impl.MemberBOImpl;
 import lk.ijse.dto.MemberDTO;
@@ -50,7 +53,7 @@ public class MemberFormController implements Initializable {
     @FXML
     private JFXTextField txtName;
 
-    MemberBO memberBO = new MemberBOImpl();
+    MemberBO memberBO = (MemberBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MEMBER);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -93,6 +96,9 @@ public class MemberFormController implements Initializable {
     }
 
     private void clearFields() {
+        txtID.clear();
+        txtName.clear();
+        txtEmail.clear();
     }
 
     @FXML
@@ -112,8 +118,14 @@ public class MemberFormController implements Initializable {
     }
 
     @FXML
-    void btnMemberActivitiesOnAction(ActionEvent event) {
-
+    void btnMemberActivitiesOnAction(ActionEvent event) throws IOException {
+        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/activities_form.fxml"));
+        Scene scene = new Scene(rootNew);
+        Stage stage = new Stage();
+        stage.setTitle("BookWorm");
+        stage.setScene(scene);
+        stage.show();
+        stage.centerOnScreen();
     }
 
     @FXML

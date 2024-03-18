@@ -1,5 +1,6 @@
 package lk.ijse.dao.custom.impl;
 
+import javafx.scene.control.Alert;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.BranchDAO;
 import lk.ijse.dto.BranchDTO;
@@ -70,12 +71,17 @@ public class BranchDAOImpl implements BranchDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.save(branch);
+        try{
+            session.save(branch);
 
-        transaction.commit();
-        session.close();
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }finally{
+            session.close();
+        }
 
-        return true;
     }
 
     @Override
@@ -83,12 +89,17 @@ public class BranchDAOImpl implements BranchDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.update(branch);
+        try{
+            session.update(branch);
 
-        transaction.commit();
-        session.close();
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }finally{
+            session.close();
+        }
 
-        return true;
     }
 
     @Override
@@ -109,11 +120,16 @@ public class BranchDAOImpl implements BranchDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.remove(branch);
+        try{
+            session.remove(branch);
 
-        transaction.commit();
-        session.close();
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }finally{
+            session.close();
+        }
 
-        return true;
     }
 }

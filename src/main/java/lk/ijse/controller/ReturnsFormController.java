@@ -10,16 +10,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BorrowalBO;
 import lk.ijse.bo.custom.ReturnBO;
 import lk.ijse.bo.custom.impl.BorrowalBOImpl;
 import lk.ijse.bo.custom.impl.ReturnBOImpl;
 import lk.ijse.config.FactoryConfiguration;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.BorrowalDAO;
+import lk.ijse.dao.custom.MemberDAO;
 import lk.ijse.dao.custom.QueryDAO;
 import lk.ijse.dao.custom.impl.BorrowalDAOImpl;
 import lk.ijse.dao.custom.impl.QueryDAOImpl;
@@ -81,11 +85,11 @@ public class ReturnsFormController implements Initializable {
     @FXML
     private DatePicker dtpReturnDate;
 
-    ReturnBO returnBO = new ReturnBOImpl();
+    ReturnBO returnBO = (ReturnBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.RETURN);
 
-    BorrowalDAO borrowalDAO = new BorrowalDAOImpl();
+    BorrowalDAO borrowalDAO = (BorrowalDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.BORROW);
 
-    QueryDAO queryDAO = new QueryDAOImpl();
+    QueryDAO queryDAO = (QueryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.QUERY);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -162,13 +166,27 @@ public class ReturnsFormController implements Initializable {
             }
 
             transaction.commit();
+            new Alert(Alert.AlertType.CONFIRMATION,"Return recorded successfully!").showAndWait();
 
         }catch (Exception e){
             transaction.rollback();
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,"Return recording unsuccessful").showAndWait();
         }finally {
             session.close();
+            clearFields();
         }
+    }
+
+    private void clearFields() {
+        Parent rootNew = null;
+        try {
+            rootNew = FXMLLoader.load(getClass().getResource("/view/returns_form.fxml"));
+            this.rootNode.getChildren().clear();
+            this.rootNode.getChildren().add(rootNew);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @FXML
@@ -220,7 +238,10 @@ public class ReturnsFormController implements Initializable {
         dtpDue.setValue(borrowal.getDue_date());
         lblM.setText(borrowal.getMember().getId()+"  "+borrowal.getMember().getName());
         lblB1.setText(borrowal.getBooks().get(0).getTitle());
+
+        if (borrowal.getBooks().size()==2){
         lblB2.setText(borrowal.getBooks().get(1).getTitle());
+        }
         dtpDue.requestFocus();
     }
 

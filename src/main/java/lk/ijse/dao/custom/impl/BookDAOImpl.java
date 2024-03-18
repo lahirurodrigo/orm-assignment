@@ -16,12 +16,16 @@ public class BookDAOImpl implements BookDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.save(book);
+        try{
+            session.save(book);
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }finally{
+            session.close();
+        }
 
-        transaction.commit();
-        session.close();
-
-        return true;
     }
 
     @Override
@@ -29,12 +33,16 @@ public class BookDAOImpl implements BookDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.update(book);
+        try{
+            session.update(book);
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }finally{
+            session.close();
+        }
 
-        transaction.commit();
-        session.close();
-
-        return true;
     }
 
     @Override
@@ -55,12 +63,16 @@ public class BookDAOImpl implements BookDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.remove(book);
+        try{
+            session.remove(book);
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }finally{
+            session.close();
+        }
 
-        transaction.commit();
-        session.close();
-
-        return true;
     }
 
     @Override

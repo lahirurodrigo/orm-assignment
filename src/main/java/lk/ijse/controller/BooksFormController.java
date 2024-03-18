@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BookBO;
 import lk.ijse.bo.custom.impl.BookBOImpl;
 import lk.ijse.dto.BookDTO;
@@ -66,7 +67,7 @@ public class BooksFormController implements Initializable {
     @FXML
     private JFXTextField txtTitle;
 
-    BookBO bookBO = new BookBOImpl();
+    BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BOOK);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -1,6 +1,7 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.MemberBO;
+import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.MemberDAO;
 import lk.ijse.dao.custom.impl.MemberDAOImpl;
 import lk.ijse.dto.MemberDTO;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class MemberBOImpl implements MemberBO {
 
-    MemberDAO memberDAO = new MemberDAOImpl();
+    MemberDAO memberDAO = (MemberDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DTOTypes.USER);
 
     @Override
     public boolean saveMember(MemberDTO memberDTO) {

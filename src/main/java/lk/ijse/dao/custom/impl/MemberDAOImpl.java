@@ -18,12 +18,17 @@ public class MemberDAOImpl implements MemberDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.save(member);
+        try{
+            session.save(member);
 
-        transaction.commit();
-        session.close();
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }finally{
+            session.close();
+        }
 
-        return true;
     }
 
     @Override
@@ -44,12 +49,17 @@ public class MemberDAOImpl implements MemberDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.update(member);
+        try{
+            session.update(member);
 
-        transaction.commit();
-        session.close();
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }finally{
+            session.close();
+        }
 
-        return true;
     }
 
     @Override
@@ -57,12 +67,17 @@ public class MemberDAOImpl implements MemberDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.remove(member);
+        try{
+            session.remove(member);
 
-        transaction.commit();
-        session.close();
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }finally{
+            session.close();
+        }
 
-        return true;
     }
 
     @Override
