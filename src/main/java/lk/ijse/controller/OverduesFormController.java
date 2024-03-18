@@ -52,7 +52,7 @@ public class OverduesFormController implements Initializable {
 
     private void setCellValues() {
         colBorrowal.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colUser.setCellValueFactory(new PropertyValueFactory<>("memberid"));
+        colUser.setCellValueFactory(new PropertyValueFactory<>("memberId"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colBook1Id.setCellValueFactory(new PropertyValueFactory<>("book1Id"));
         colBookId.setCellValueFactory(new PropertyValueFactory<>("book2Id"));

@@ -78,8 +78,10 @@ public class DashboardFormController {
     }
 
     @FXML
-    void btnSettingsOnAction(ActionEvent event) {
-
+    void btnSettingsOnAction(ActionEvent event) throws IOException {
+        Parent rootNew = FXMLLoader.load(getClass().getResource("/view/settings_form.fxml"));
+        this.rootNode.getChildren().clear();
+        this.rootNode.getChildren().add(rootNew);
     }
 
 }

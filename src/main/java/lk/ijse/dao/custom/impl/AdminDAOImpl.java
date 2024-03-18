@@ -2,8 +2,10 @@ package lk.ijse.dao.custom.impl;
 
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.AdminDAO;
+import lk.ijse.dto.MemberDTO;
 import lk.ijse.entity.Admin;
 import lk.ijse.entity.Branch;
+import lk.ijse.entity.Member;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
@@ -98,6 +100,36 @@ public class AdminDAOImpl implements AdminDAO {
         session.close();
 
         return admin;
+    }
+
+    @Override
+    public boolean updateAdmin(Admin admin) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            session.update(admin);
+
+            transaction.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }finally{
+            session.close();
+        }
+    }
+
+    @Override
+    public List<Branch> getBranchList(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Admin admin = session.get(Admin.class,id);
+
+        transaction.commit();
+        session.close();
+
+        return admin.getBranches() ;
     }
 
     private String splitId(String currentId)throws Exception{
